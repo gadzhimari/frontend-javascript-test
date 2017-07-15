@@ -1,0 +1,38 @@
+{
+  "name": "frontend-javascript-test",
+  "version": "0.0.1",
+  "description": "Тестовое задание на позицию Frontender",
+  "scripts": {
+    "test": "jest --colors",
+    "build": "babel src --out-dir dist --source-maps inline",
+    "lint": "eslint",
+    "prepublish": "npm run build"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gadzhimari/frontend-javascript-test"
+  },
+  "author": "Gadzhimari Kachaev <gadzhimari@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gadzhimari/frontend-javascript-test/issues"
+  },
+  "homepage": "https://github.com/gadzhimari/katas#readme",
+  "dependencies": {
+    "babel-preset-env": "*",
+    "babel-preset-stage-0": "*"
+  },
+  "devDependencies": {
+    "babel-cli": "*",
+    "babel-core": "*",
+    "babel-eslint": "*",
+    "babel-jest": "*",
+    "eslint": "*",
+    "eslint-config-airbnb": "*",
+    "eslint-plugin-import": "*",
+    "jest": "*"
+  }
+}
