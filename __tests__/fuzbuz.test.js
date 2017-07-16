@@ -1,4 +1,4 @@
-import { dscount } from '../src/fuzbuz.js';
+import { dscount, checkSyntax } from '../src/fuzbuz.js';
 
 test('Count the numbers of consecutive symbols', () => {
   expect(dscount('ab___ab__', 'a', 'b')).toBe(2);
@@ -9,4 +9,24 @@ test('Count the numbers of consecutive symbols', () => {
   expect(dscount('_a__b____', 'a', 'b')).toBe(0);
   expect(dscount('-ab-аb-ab', 'a', 'b')).toBe(2);
   expect(dscount('aAa', 'a', 'a')).toBe(2);
-})
+});
+
+test('checkSyntax', () => {
+  expect(checkSyntax('(()')).toBe(1);
+  expect(checkSyntax('(())')).toBe(0);
+  expect(checkSyntax('))')).toBe(1);
+  expect(checkSyntax('())')).toBe(1);
+  expect(checkSyntax('(()))')).toBe(1);
+  expect(checkSyntax('((())')).toBe(1);
+  expect(checkSyntax('()(())')).toBe(0);
+  expect(checkSyntax('(()())')).toBe(0);
+  expect(checkSyntax('()(()(()))')).toBe(0);
+  expect(checkSyntax('---(++++)----')).toBe(0);
+  expect(checkSyntax('')).toBe(0);
+  expect(checkSyntax('before ( middle []) after ')).toBe(0);
+  expect(checkSyntax(') (')).toBe(1);
+  //expect(checkSyntax('} {')).toBe(1);
+  //expect(checkSyntax('<(   >)')).toBe(1);
+  //expect(checkSyntax('(  [  <>  ()  ]  <>  )')).toBe(0);
+  //expect(checkSyntax('   (      [)')).toBe(1);
+});
