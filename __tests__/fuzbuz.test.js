@@ -25,8 +25,8 @@ test('checkSyntax', () => {
   expect(checkSyntax('')).toBe(0);
   expect(checkSyntax('before ( middle []) after ')).toBe(0);
   expect(checkSyntax(') (')).toBe(1);
-  //expect(checkSyntax('} {')).toBe(1);
-  //expect(checkSyntax('<(   >)')).toBe(1);
-  //expect(checkSyntax('(  [  <>  ()  ]  <>  )')).toBe(0);
-  //expect(checkSyntax('   (      [)')).toBe(1);
+  expect(checkSyntax('} {')).toBe(1);
+  expect(checkSyntax('<(   >)')).toBe(1);
+  expect(checkSyntax('(  [  <>  ()  ]  <>  )')).toBe(0);
+  expect(checkSyntax('   (      [)')).toBe(1);
 });

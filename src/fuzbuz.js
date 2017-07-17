@@ -7,22 +7,20 @@ export const dscount = (str, a, b) => {
 };
 
 export const checkSyntax = (str) => {
-  const openedBrackets = new Set(['(']);
-  const closedBrackets = new Set([')']);
-  const result = str.split('').reduce((stack, symbol) => {
-    if (stack < 0) {
+  const braces = new Set(['(', ')', '{', '}', '[', ']', '<', '>']);
+  const pairs = { '(':')', '{':'}', '[':']', '<':'>' };
+  const iter = (arr, stack) => {
+    if (arr.length === 0) {
       return stack;
     }
-    if (!openedBrackets.has(symbol) && !closedBrackets.has(symbol)) {
-      return stack;
-    } else if (openedBrackets.has(symbol)) {
-      return stack + 1;
-    } else if (closedBrackets.has(symbol) && stack > 0) {
-      return stack - 1;
+    const [symbol, ...rest] = arr;
+    if (!braces.has(symbol)){
+      return iter(rest, stack);
     }
-
-    return -1;
-  }, 0);
-
-  return (result === 0) ? 0 : 1;
+    if (pairs[symbol]) {
+      return iter(rest, [symbol, ...stack]);
+    }
+    return (symbol !== pairs[stack[0]]) ? [1] : iter(rest, stack.slice(1));
+  }
+  return iter(str.split(''), []).length;
 }
